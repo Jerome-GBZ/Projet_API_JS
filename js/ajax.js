@@ -1,12 +1,12 @@
 $affichage = $('#zone_affichage');
 
-$btn_recherche = $('#btn-lancee-recherhe')
+$btn_recherche = $('#btn-lancee-recherhe');
 
 $affichage.attr("onclick","recherche()");
 
 function recherche() {
-  var str_recherche = $affichage;
-  
+  var str_recherche = 'https://tastedive.com/api/similar?q=' + $affichage + $;
 
-  https://tastedive.com/api/similar?q=red+hot+chili+peppers%2C+pulp+fiction
+
+  red+hot+chili+peppers%2C+pulp+fiction
 }
