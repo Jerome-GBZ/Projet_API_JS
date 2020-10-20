@@ -1,12 +1,25 @@
 $affichage = $('#zone_affichage');
 
-$btn_recherche = $('#btn-lancee-recherhe');
+$btn_recherche = $('#btn-lancer-recherche');
 
-$affichage.attr("onclick","recherche()");
+$btn_recherche.attr("onclick","recherche()");
 
 function recherche() {
-  var str_recherche = 'https://tastedive.com/api/similar?q=' + $affichage + $;
+  console.log("OK");
+  try {
+    var url_recherche = 'https://tastedive.com/api/similar?q=' + $affichage.val() + '&k=388762-m4103gam-DAWFNPJZ';
 
+    $.get(url_recherche,afficheElements);
+  } catch (e) {
+    alert('Erreur');
+  }
 
-  red+hot+chili+peppers%2C+pulp+fiction
+}
+
+function afficheElements(str) {
+  var obj_json = JSON.parse(str);
+
+  $res1 = $('#res1');
+
+  $res1.val(obj_json.Results[0].Name);
 }
