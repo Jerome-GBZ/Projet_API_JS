@@ -4,6 +4,12 @@ $btn_recherche = $('#btn-lancer-recherche');
 
 $btn_recherche.attr("onclick","recherche()");
 
+$affichage.keypress(function(e) {
+  if (e==13) {
+    recherhe();
+  }
+});
+
 function recherche() {
   console.log("OK");
   try {
