@@ -19,13 +19,13 @@ function recherche() {
 }
 
 function afficheElements(obj) {
+    $(".res").remove();
+
     var nb_affichage = $(".list_deroulante").val();
 
     $div_resultats = $('#bloc-resultats');
 
-    for (var i = 0; i < $nb_affichage; i++) {
-      console.log(i);
-
+    for (var i = 0; i < nb_affichage; i++) {
       $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
     }
 }
