@@ -4,10 +4,14 @@ $btn_recherche = $('#btn-lancer-recherche');
 
 $btn_recherche.attr("onclick","recherche()");
 
+$nb_affichage = 3;
+
 function recherche() {
   console.log("OK");
   try {
-    var url_recherche = 'https://tastedive.com/api/similar?q=' + $affichage.val() + '&k=388762-m4103gam-DAWFNPJZ';
+    var proxy = 'https://cors-anywhere.herokuapp.com/';
+
+    var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&k=388762-m4103gam-DAWFNPJZ';
 
     $.get(url_recherche,afficheElements);
   } catch (e) {
@@ -16,10 +20,10 @@ function recherche() {
 
 }
 
-function afficheElements(str) {
-  var obj_json = JSON.parse(str);
+function afficheElements(obj) {
+    $resultats = $('.res');
 
-  $res1 = $('#res1');
-
-  $res1.val(obj_json.Results[0].Name);
+    $resultats.each(function(i) {
+      $(this).text(obj.Similar.Results[i].Name);
+    });
 }
