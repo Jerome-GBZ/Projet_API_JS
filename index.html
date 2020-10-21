@@ -20,7 +20,7 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="zone_affichage" type="text" placeholder="Que cherchez-vous ?" />
+					<input id="zone_affichage" onkeyup="color_Etoile()" type="text" placeholder="Que cherchez-vous ?" />
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -29,16 +29,25 @@
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
 
-					<button id="btn-favoris" type="button" disabled
-					title="Ajouter la recherche aux favoris">
+					<button id="btn-favoris" type="button"
+						title="Ajouter la recherche aux favoris" onclick="save_LS()">
 						<!-- Icone étoile vide => Recherche pas en favoris -->
-						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
+						<!-- <img src="images/etoile-vide.svg" alt="Etoile vide" width=22 > -->
 
 						<!-- Icone étoile pleine => Recherche en favoris -->
+						<img src="./images/etoile-vide.svg" id="etoile_img" alt="Etoile vide" width=22 >
 						<!-- <img src="images/etoile-pleine.svg" alt="Etoile pleine" width=22 > -->
 
 						<!-- (Icones provenant de flaticon.com) -->
 					</button>
+
+					<select class="list_deroulante" name="">
+							<option value="5"> 3 </option>
+							<option value="5"> 5 </option>
+							<option value="5"> 10 </option>
+							<option value="5"> 15 </option>
+							<option value="5"> 20 </option>
+					</select>
 				</div>
 
 				<!-- Résultats de recherche -->
@@ -46,7 +55,7 @@
 					<img src='images/attente-ajax.gif' alt="GIF Attente de résultats" width=50 />
 				</div>
 				<div id="bloc-resultats">
-					<p id="res1" class="res">Résultat 1 ...</p>
+					<p class="res">Résultat 1 ...</p>
 					<p class="res">Résultat 2 ...</p>
 					<p class="res">Résultat 3 ...</p>
 					<p class="info-vide">( &empty; Aucun résultat trouvé )</p>
