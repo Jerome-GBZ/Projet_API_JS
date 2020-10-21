@@ -35,6 +35,7 @@ function save_LS() { // save local storage quand on clique
 
     // re Actualiser la liste des favoris à l'écran
     init_fav();
+    color_Etoile();
 }
 
 function init_fav() {
@@ -59,4 +60,5 @@ function remove_LS(img_click) {
     // supprimer element dans le local storage
     localStorage.removeItem(img_click.id);
     init_fav();
+    color_Etoile();
 }
