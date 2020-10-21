@@ -1,3 +1,8 @@
+// initialiser localStorage
+if(localStorage.getItem("fav") == null) {
+  localStorage.setItem("fav", "{}");
+}
+
 function color_Etoile() { // Si un favoris est detecter dans zone affichage mettre etoile en pleine
     if( localStorage.getItem( $("#zone_affichage").val() )  != null ) {
         // image etoile pleine
@@ -14,14 +19,11 @@ function save_LS() { // save local storage quand on clique
     // Reccuperer la zone_affichage en Jquery
     var zone_affichage = $("#zone_affichage");
     var content_zone = zone_affichage.val();
-    // console.log( zone_affichage );
-    // console.log( content_zone );
 
-    // console.log(zone_affichage.val().length);
 
     if( zone_affichage.val().length > 0 ) { // save
         //
-        localStorage.setItem("", zone_affichage.val());
+        localStorage.setItem("fav", zone_affichage.val());
     }
 }
 
