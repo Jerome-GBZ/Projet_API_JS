@@ -171,6 +171,7 @@ p#explication {
 	width: 50px;
 	height: auto;
 	color: black;
+	text-align: center;
 }
 
 .list_deroulante > option {
