@@ -12,6 +12,11 @@ function recherche() {
     var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&k=388762-m4103gam-DAWFNPJZ';
 
     $.get(url_recherche,afficheElements);
+
+    $(".res").remove();
+    $('.info-vide').remove();
+    $('#bloc-gif-attente').show();
+
   } catch (e) {
     alert('Erreur');
   }
@@ -19,19 +24,17 @@ function recherche() {
 }
 
 function afficheElements(obj) {
-  $(".res").remove();
-  $('.info-vide').remove();
   $div_resultats = $('#bloc-resultats');
 
-    if (obj.Similar.Results[0] == undefined) {
-      $div_resultats.append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>");
-    } else {
-      var nb_affichage = $(".list_deroulante").val();
+  if (obj.Similar.Results[0] == undefined) {
+    $div_resultats.append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>");
+  } else {
+    var nb_affichage = $(".list_deroulante").val();
 
-      for (var i = 0; i < nb_affichage; i++) {
-        $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
-      }
+    for (var i = 0; i < nb_affichage; i++) {
+      $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
     }
+  }
 
-
+  $('#bloc-gif-attente').hide();
 }
