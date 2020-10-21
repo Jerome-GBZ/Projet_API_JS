@@ -9,7 +9,7 @@ function color_Etoile() { // Si un favoris est detecter dans zone affichage mett
 }
 
 function limit() {
-  console.log( $(".list_deroulante").val() );
+  return $(".list_deroulante").val();
 }
 
 function save_LS() { // save local storage quand on clique
