@@ -4,8 +4,6 @@ $btn_recherche = $('#btn-lancer-recherche');
 
 $btn_recherche.attr("onclick","recherche()");
 
-$nb_affichage = 3;
-
 function recherche() {
   console.log("OK");
   try {
@@ -21,9 +19,13 @@ function recherche() {
 }
 
 function afficheElements(obj) {
-    $resultats = $('.res');
+    var nb_affichage = $(".list_deroulante").val();
 
-    $resultats.each(function(i) {
-      $(this).text(obj.Similar.Results[i].Name);
-    });
+    $div_resultats = $('#bloc-resultats');
+
+    for (var i = 0; i < $nb_affichage; i++) {
+      console.log(i);
+
+      $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
+    }
 }
