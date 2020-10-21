@@ -1,14 +1,11 @@
 $affichage = $('#zone_affichage');
 
+var recherches_possibles = ["Iron Man", "Iron Man 2", "Radiohead", "Iron Maiden", "The Cure", "Jurassic Park"];
+$affichage.autocomplete({source: recherches_possibles, minLength: 2});
+
 $btn_recherche = $('#btn-lancer-recherche');
 
 $btn_recherche.attr("onclick","recherche()");
-
-$affichage.keypress(function(e) {
-  if (e==13) {
-    recherhe();
-  }
-});
 
 function recherche() {
   console.log("OK");
