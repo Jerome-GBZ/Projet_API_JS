@@ -1,7 +1,11 @@
 // initialiser localStorage
 if(localStorage.getItem("fav") == null) {
-  localStorage.setItem("fav", "{}");
+  let obj = JSON.stringify( {i:0} );
+  localStorage.setItem("fav", obj);
 }
+
+init_fav();
+
 
 function color_Etoile() { // Si un favoris est detecter dans zone affichage mettre etoile en pleine
     if( localStorage.getItem( $("#zone_affichage").val() )  != null ) {
@@ -13,29 +17,35 @@ function color_Etoile() { // Si un favoris est detecter dans zone affichage mett
     }
 }
 
+
 function save_LS() { // save local storage quand on clique
     // !! attention pas de doublon !!
 
     // Reccuperer la zone_affichage en Jquery
     var zone_affichage = $("#zone_affichage");
-    var content_zone = zone_affichage.val();
-
 
     if( zone_affichage.val().length > 0 ) { // save
-        //
-        let content_LS = localStorage.getItem("fav").substr(1).slice(0, -1);
-        if( content_LS.length > 0 ){
-            content_LS += ","+zone_affichage.val() + "}";
-        } else {
-          content_LS = zone_affichage.val() + "}";
-        }
+        let obj = JSON.parse(localStorage.getItem("fav"));
+        let indice = obj.i;
 
-        content_LS = "{" + content_LS;
 
-        console.log( content_LS );
+        obj[indice] = {non:zone_affichage.val()};
+        obj.i = indice+1;
 
-        localStorage.setItem("fav", content_LS);
+        let final_obj = JSON.stringify( obj );
+        localStorage.setItem("fav", final_obj);
     }
+}
+
+function init_fav() {
+    // recup le localstorage
+    var zone_affichage = $("#zone_affichage");
+
+    // parse le resultat du localStorage
+    let obj = JSON.parse(localStorage.getItem("fav"));
+
+    // placer les element d(obj dans les li 
+    console.log(obj);
 }
 
 // if(localStorage.getItem("i") == null) {
