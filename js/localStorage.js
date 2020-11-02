@@ -10,7 +10,7 @@ function color_Etoile() { // Si un favoris est detecter dans zone affichage mett
         $("#btn-favoris").css('cursor', 'pointer');
         $("#btn-favoris").css('background-color', 'rgb(26, 188, 156)');
 
-        if( localStorage.getItem( "key_"+$("#zone_affichage").val() )  != null ) {
+        if( localStorage.getItem( "key_"+$("#zone_affichage").val().toLowerCase() )  != null ) {
             // image etoile pleine
             $("#etoile_img").attr("src","./images/etoile-pleine.svg");
         } else {
@@ -35,7 +35,7 @@ function save_LS() { // save local storage quand on clique
     let clef = "key_"+zone_affichage.val();
 
     if( localStorage.getItem(clef) != null ) {
-        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val() );
+        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val().toLowerCase() );
         // console.log( obj_clique );
 
         remove_LS(obj_clique);
@@ -51,7 +51,7 @@ function save_LS() { // save local storage quand on clique
             let final_obj = JSON.stringify( obj );
             localStorage.setItem("fav", final_obj);
             */
-            localStorage.setItem("key_"+zone_affichage.val(), zone_affichage.val());
+            localStorage.setItem("key_"+zone_affichage.val().toLowerCase(), zone_affichage.val());
         }
     }
 
