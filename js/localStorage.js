@@ -51,14 +51,66 @@ function init_fav() {
         for (var i=0; i < localStorage.length; i++) {
             let clef = localStorage.key(i);
             let nom = localStorage.getItem(clef);
-            $("#liste-favoris").append('<li> <span title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
+            if(clef.substr(0, 4) == "key_") {
+              $("#liste-favoris").append('<li> <span title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
+            }
         }
     }
 }
 
 function remove_LS(img_click) {
+  console.log(img_click);
+    console.log(img_click.id);
+    console.log( $("#"+img_click.id) );
+/*
+    $( "#confirm_alert" ).simpleConfirm({
+        message: "Etes vous sure de vouloir supprimer: ",
+        success: function(){
+            console.log("ok");
+        },
+        cancel: function() {
+            console.log("nop");
+        }
+    });
+*/
+$.confirm({
+    text: "Voulez vous supprimer un element ?",
+    color: "black",
+    buttons: {
+        Yes: {
+            text: 'Yes', // With spaces and symbols
+            action: function () {
+                $.alert('You clicked on "heyThere"');
+            }
+        },
+        No: {
+            text: 'No !', // With spaces and symbols
+            action: function () {
+                $.alert('You clicked on "heyThere"');
+            }
+        }
+    }
+});
+    /*
+    $( "#dialog" ).dialog({
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "Delete all items": function() {
+                console.log( "delete" );
+                $( this ).dialog( "close" );
+            },
+            Cancel: function() {
+                console.log( "close" );
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+    */
     // supprimer element dans le local storage
-    localStorage.removeItem(img_click.id);
-    init_fav();
-    color_Etoile();
+    // localStorage.removeItem(img_click.id);
+    // init_fav();
+    // color_Etoile();
 }
