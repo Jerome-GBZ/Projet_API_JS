@@ -9,7 +9,6 @@ $affichage.autocomplete(
   {
     minLength: 2,
     autofocus: true,
-    delay: 1000
   });
 
 $btn_recherche = $('#btn-lancer-recherche');
@@ -18,27 +17,22 @@ $btn_recherche.attr("onclick","recherche()");
 
 function recherche() {
   if ($affichage.val() != '') {
-    function checkCurseur(event) {
-      if (event.target.className == "recherche") {
-        try {
-          var proxy = 'https://cors-anywhere.herokuapp.com/';
+    try {
+      var proxy = 'https://cors-anywhere.herokuapp.com/';
 
-          nb_affichage = $(".list_deroulante").val();
+      nb_affichage = $(".list_deroulante").val();
 
-          var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&limit=' + nb_affichage + '&k=388762-m4103gam-DAWFNPJZ';
+      var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&limit=' + nb_affichage + '&k=388762-m4103gam-DAWFNPJZ';
 
-          $.get(url_recherche,afficheElements);
+      $.get(url_recherche,afficheElements);
 
-          $(".res").remove();
-          $('.info-vide').remove();
-          $('#bloc-gif-attente').show();
+      $(".res").remove();
+      $('.info-vide').remove();
+      $('#bloc-gif-attente').show();
 
-        } catch (e) {
-          alert('Erreur');
-        }
-      }
+    } catch (e) {
+      alert('Erreur');
     }
-
   }
 
 }
@@ -60,4 +54,10 @@ function afficheElements(obj) {
 function fav_clique(elem) {
   $affichage.val($(elem).text());
   recherche();
+}
+
+function recherche_entree() {
+  if (event.keyCode == 13) {
+    recherche();
+  }
 }
