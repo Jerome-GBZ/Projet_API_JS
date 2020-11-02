@@ -177,3 +177,14 @@ p#explication {
 .list_deroulante > option {
 	color: black;
 }
+
+
+/* Autocomplete
+----------------------------------*/
+.ui-helper-hidden-accessible {
+	display: none;
+}
+
+.ui-menu-item > div {
+	color: black;
+}

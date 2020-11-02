@@ -1,7 +1,16 @@
 $affichage = $('#zone_affichage');
+var nb_affichage;
 
-var recherches_possibles = ["Iron Man", "Iron Man 2", "Radiohead", "Iron Maiden", "The Cure", "Jurassic Park"];
-$affichage.autocomplete({source: recherches_possibles, minLength: 2});
+var recherches_possibles = ["Iron Man", "Iron Man 2", "Radiohead", "Iron Maiden", "The Cure", "Jurassic Park", "Hulk"];
+$affichage.autocomplete(
+  {
+    source: recherches_possibles
+  },
+  {
+    minLength: 2,
+    autofocus: true,
+    delay: 1000
+  });
 
 $btn_recherche = $('#btn-lancer-recherche');
 
@@ -12,7 +21,9 @@ function recherche() {
   try {
     var proxy = 'https://cors-anywhere.herokuapp.com/';
 
-    var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&k=388762-m4103gam-DAWFNPJZ';
+    nb_affichage = $(".list_deroulante").val();
+
+    var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&limit=' + nb_affichage + '&k=388762-m4103gam-DAWFNPJZ';
 
     $.get(url_recherche,afficheElements);
 
@@ -32,8 +43,6 @@ function afficheElements(obj) {
   if (obj.Similar.Results[0] == undefined) {
     $div_resultats.append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>");
   } else {
-    var nb_affichage = $(".list_deroulante").val();
-
     for (var i = 0; i < nb_affichage; i++) {
       $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
     }
