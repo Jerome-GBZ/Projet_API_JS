@@ -188,3 +188,7 @@ p#explication {
 .ui-menu-item > div {
 	color: black;
 }
+
+.ui-dialog-title {
+	color: black;
+}

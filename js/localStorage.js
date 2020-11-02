@@ -3,13 +3,23 @@ init_fav();
 
 
 function color_Etoile() { // Si un favoris est detecter dans zone affichage mettre etoile en pleine
-    if( localStorage.getItem( "key_"+$("#zone_affichage").val() )  != null ) {
-        // image etoile pleine
-        $("#etoile_img").attr("src","./images/etoile-pleine.svg");
+
+
+    if( $("#zone_affichage").val().length > 0 ){
+        // button cliquable
+        $("#btn-favoris").attr("disabled","false");
+        if( localStorage.getItem( "key_"+$("#zone_affichage").val() )  != null ) {
+            // image etoile pleine
+            $("#etoile_img").attr("src","./images/etoile-pleine.svg");
+        } else {
+            // image etoile crisé
+            $("#etoile_img").attr("src","./images/etoile-vide.svg");
+        }
     } else {
-        // image etoile crisé
-        $("#etoile_img").attr("src","./images/etoile-vide.svg");
+        // button cliquable
+        $("#btn-favoris").attr("disabled","true");
     }
+    console.log("color etoile");
 }
 
 
@@ -52,65 +62,32 @@ function init_fav() {
             let clef = localStorage.key(i);
             let nom = localStorage.getItem(clef);
             if(clef.substr(0, 4) == "key_") {
-              $("#liste-favoris").append('<li> <span title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
+              $("#liste-favoris").append('<li> <span onclick="fav_clique(this)" title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
             }
         }
     }
 }
 
 function remove_LS(img_click) {
-  console.log(img_click);
-    console.log(img_click.id);
-    console.log( $("#"+img_click.id) );
-/*
-    $( "#confirm_alert" ).simpleConfirm({
-        message: "Etes vous sure de vouloir supprimer: ",
-        success: function(){
-            console.log("ok");
-        },
-        cancel: function() {
-            console.log("nop");
-        }
-    });
-*/
-$.confirm({
-    text: "Voulez vous supprimer un element ?",
-    color: "black",
-    buttons: {
-        Yes: {
-            text: 'Yes', // With spaces and symbols
-            action: function () {
-                $.alert('You clicked on "heyThere"');
-            }
-        },
-        No: {
-            text: 'No !', // With spaces and symbols
-            action: function () {
-                $.alert('You clicked on "heyThere"');
-            }
-        }
-    }
-});
-    /*
-    $( "#dialog" ).dialog({
-        resizable: false,
+    $("#dialog-confirm").text("En cliquant sur 'Supprimer' vous supprimerez votre favoris : "+localStorage.getItem(img_click.id));
+
+    $( "#dialog-confirm" ).dialog({
         height: "auto",
         width: 400,
-        modal: true,
+        title: "Voulez vous supprimer un element ?",
         buttons: {
-            "Delete all items": function() {
-                console.log( "delete" );
+            "Supprimer": function() {
+                // supprimer element dans le local storage
+                // localStorage.removeItem(img_click.id);
+                init_fav();
+                color_Etoile();
+                console.log("Supprimer");
                 $( this ).dialog( "close" );
             },
-            Cancel: function() {
-                console.log( "close" );
+            "Annuler": function() {
+                console.log("Annuler");
                 $( this ).dialog( "close" );
             }
         }
     });
-    */
-    // supprimer element dans le local storage
-    // localStorage.removeItem(img_click.id);
-    // init_fav();
-    // color_Etoile();
 }
