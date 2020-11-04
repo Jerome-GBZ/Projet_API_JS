@@ -2,14 +2,6 @@ $affichage = $('#zone_affichage');
 var nb_affichage;
 
 var recherches_possibles = ["Iron Man", "Iron Man 2", "Radiohead", "Iron Maiden", "The Cure", "Jurassic Park", "Hulk"];
-$affichage.autocomplete(
-  {
-    source: recherches_possibles
-  },
-  {
-    minLength: 2,
-    autofocus: true,
-  });
 
 $btn_recherche = $('#btn-lancer-recherche');
 
@@ -43,6 +35,9 @@ function afficheElements(obj) {
   if (obj.Similar.Results[0] == undefined) {
     $div_resultats.append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>");
   } else {
+    tab_fav.push($affichage.val());
+    fillAutocomplete();
+
     for (var i = 0; i < nb_affichage; i++) {
       $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
     }

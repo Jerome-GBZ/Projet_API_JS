@@ -33,6 +33,7 @@ function save_LS() { // save local storage quand on clique
     let nom = zone_affichage.val();
     let clef = "key_"+nom;
     tab_fav.push(nom);
+    fillAutocomplete();
 
     if( localStorage.getItem(clef) != null ) {
         let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val() );
@@ -66,6 +67,7 @@ function init_fav() {
             }
         }
     }
+    fillAutocomplete();
 }
 
 function remove_LS(img_click) {
@@ -89,5 +91,17 @@ function remove_LS(img_click) {
                 $( this ).dialog( "close" );
             }
         }
+    });
+}
+
+function fillAutocomplete() {
+  tab_fav = Array.from(new Set(tab_fav));
+  $affichage.autocomplete(
+    {
+      source: tab_fav
+    },
+    {
+      minLength: 2,
+      autofocus: true,
     });
 }
