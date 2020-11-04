@@ -1,28 +1,28 @@
 // initialiser la liste de favoris
 init_fav();
 $("#btn-favoris").css('cursor', 'no-drop');
-
+var tab_fav = [];
 
 function color_Etoile() { // Si un favoris est detecter dans zone affichage mettre etoile en pleine
-    if( $("#zone_affichage").val().length > 0 ){
+    if( $("#zone_affichage").val().length > 0 ) {
         // button cliquable
         $("#btn-favoris").removeAttr("disabled");
         $("#btn-favoris").css('cursor', 'pointer');
         $("#btn-favoris").css('background-color', 'rgb(26, 188, 156)');
 
-        if( localStorage.getItem( "key_"+$("#zone_affichage").val().toLowerCase() )  != null ) {
+        if( localStorage.getItem( "key_"+$("#zone_affichage").val() ) != null ) {
             // image etoile pleine
             $("#etoile_img").attr("src","./images/etoile-pleine.svg");
         } else {
             // image etoile crisé
             $("#etoile_img").attr("src","./images/etoile-vide.svg");
-
         }
     } else {
         // button cliquable
         $("#btn-favoris").css('cursor', 'no-drop');
         $("#btn-favoris").attr("disabled","true");
         $("#btn-favoris").css('background-color', '#bebebe');
+        $("#etoile_img").attr("src","./images/etoile-vide.svg");
     }
 }
 
@@ -32,26 +32,17 @@ function save_LS() { // save local storage quand on clique
 
     // Reccuperer la zone_affichage en Jquery
     let zone_affichage = $("#zone_affichage");
-    let clef = "key_"+zone_affichage.val();
+    let nom = zone_affichage.val();
+    let clef = "key_"+nom;
+    tab_fav.push(nom);
 
     if( localStorage.getItem(clef) != null ) {
-        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val().toLowerCase() );
-        // console.log( obj_clique );
+        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val() );
 
         remove_LS(obj_clique);
     } else {
         if( zone_affichage.val().length > 0 ) { // save
-          /*
-            let obj = JSON.parse(localStorage.getItem("fav"));
-            let indice = obj.i;
-            console.log(obj);
-            obj[indice] = {nom:zone_affichage.val()};
-            obj.i = indice+1;
-
-            let final_obj = JSON.stringify( obj );
-            localStorage.setItem("fav", final_obj);
-            */
-            localStorage.setItem("key_"+zone_affichage.val().toLowerCase(), zone_affichage.val());
+            localStorage.setItem("key_"+zone_affichage.val(), zone_affichage.val());
         }
     }
 
@@ -59,6 +50,7 @@ function save_LS() { // save local storage quand on clique
     init_fav();
     color_Etoile();
 }
+
 
 function init_fav() {
     // parse le resultat du localStorage
@@ -75,6 +67,7 @@ function init_fav() {
             let nom = localStorage.getItem(clef);
             if(clef.substr(0, 4) == "key_") {
               $("#liste-favoris").append('<li> <span onclick="fav_clique(this)" title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
+              tab_fav.push(nom);
             }
         }
     }
@@ -93,8 +86,6 @@ function remove_LS(img_click) {
                 localStorage.removeItem(img_click.id);
                 init_fav();
                 color_Etoile();
-
-                // console.log("Supprimer");
 
                 $( this ).dialog( "close" );
             },
