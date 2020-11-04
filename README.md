@@ -17,7 +17,7 @@ Pour le projet nous avons fait :
 
   - AutoComplete remplit par les favoris + toutes les recherches effectuées
   - Appuyer sur "entrer" pour lancer une recherche
-
+  - clique sur un des resultats fait une recherche google pour avoir plus d'information sur la sugestion
 
 Probleme rencontrer :
   - AutoComplete
