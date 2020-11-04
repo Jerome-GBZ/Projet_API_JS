@@ -22,7 +22,7 @@ function recherche() {
 
       nb_affichage = $(".list_deroulante").val();
 
-      var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&limit=' + nb_affichage + '&k=388762-m4103gam-DAWFNPJZ';
+      var url_recherche = proxy + 'https://tastedive.com/api/similar?q=' + encodeURIComponent($affichage.val()) + '&limit=' + nb_affichage + '&k=388762-m4103-U30L16B8';
 
       $.get(url_recherche,afficheElements);
 
@@ -52,6 +52,7 @@ function afficheElements(obj) {
 }
 
 function fav_clique(elem) {
+  color_Etoile();
   $affichage.val($(elem).text());
   recherche();
 }

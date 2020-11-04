@@ -2,4 +2,4 @@
 Base de code de départ pour le projet JS "Développement d'une interface pour API publique"
 
 
-API key : 388762-m4103gam-DAWFNPJZ
+API key : 388762-m4103-U30L16B8
