@@ -84,12 +84,15 @@ function remove_LS(img_click) {
                 init_fav();
                 color_Etoile();
 
-                $( this ).dialog( "close" );
+                $(this).dialog("close");
             },
             "Annuler": function() {
                 // console.log("Annuler");
-                $( this ).dialog( "close" );
+                $(this).dialog("close");
             }
+        },
+        close: function(event, ui) {
+          $(this).remove();
         }
     });
 }
