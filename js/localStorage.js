@@ -52,11 +52,12 @@ function save_LS() { // save local storage quand on clique
 
 function init_fav() {
     $("#liste-favoris").text("");
-    $("#section-favoris").append('<p class="info-vide"></p>');
+    $("#section-favoris").append('<p class="info-vide-favoris"> </p>');
     // placer les element d'obj dans les li
-    if( localStorage.length < 1 ) {
-        $("#section-favoris").append('<p class="info-vide">( &empty; Aucune recherche enregistrée )</p>');
+    if( localStorage.length == 0 ) {
+        $("#section-favoris").append('<p class="info-vide-favoris">( &empty; Aucune recherche enregistrée )</p>');
     } else {
+        $(".info-vide-favoris").remove();
         for (var i=0; i < localStorage.length; i++) {
             let clef = localStorage.key(i);
             let nom = localStorage.getItem(clef);
