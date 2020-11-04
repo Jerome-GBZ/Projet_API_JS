@@ -52,9 +52,9 @@ function afficheElements(obj) {
 }
 
 function fav_clique(elem) {
-  color_Etoile();
   $affichage.val($(elem).text());
   recherche();
+  color_Etoile();
 }
 
 function recherche_entree() {
