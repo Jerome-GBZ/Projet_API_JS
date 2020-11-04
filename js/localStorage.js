@@ -37,10 +37,8 @@ function save_LS() { // save local storage quand on clique
 
     if( localStorage.getItem(clef) != null ) {
         let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val().toLowerCase() );
-        console.log(obj_clique);
         remove_LS(obj_clique);
     } else {
-        console.log("ici");
         if( zone_affichage.val().length > 0 ) { // save
             localStorage.setItem("key_"+zone_affichage.val().toLowerCase(), zone_affichage.val());
         }
