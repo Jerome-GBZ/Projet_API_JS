@@ -39,7 +39,8 @@ function afficheElements(obj) {
     fillAutocomplete();
 
     for (var i = 0; i < nb_affichage; i++) {
-      $div_resultats.append("<p class=\"res\">" + obj.Similar.Results[i].Name + "</p>");
+      var elementReponse = "<p><a href=\"https://www.google.com/search?q=\"" + obj.Similar.Results[i].Name + " target=\"_blank\">" + obj.Similar.Results[i].Name + "</a></p>";
+      $div_resultats.append(elementReponse);
     }
   }
 
