@@ -10,7 +10,7 @@ function color_Etoile() { // Si un favoris est detecter dans zone affichage mett
         $("#btn-favoris").css('cursor', 'pointer');
         $("#btn-favoris").css('background-color', 'rgb(26, 188, 156)');
 
-        if( localStorage.getItem( "key_"+$("#zone_affichage").val() ) != null ) {
+        if( localStorage.getItem( "key_"+$("#zone_affichage").val().toLowerCase() ) != null ) {
             // image etoile pleine
             $("#etoile_img").attr("src","./images/etoile-pleine.svg");
         } else {
@@ -31,17 +31,18 @@ function save_LS() { // save local storage quand on clique
     // Reccuperer la zone_affichage en Jquery
     let zone_affichage = $("#zone_affichage");
     let nom = zone_affichage.val();
-    let clef = "key_"+nom;
+    let clef = "key_"+nom.toLowerCase();
     tab_fav.push(nom);
     fillAutocomplete();
 
     if( localStorage.getItem(clef) != null ) {
-        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val() );
-
+        let obj_clique = document.getElementById( "key_"+$("#zone_affichage").val().toLowerCase() );
+        console.log(obj_clique);
         remove_LS(obj_clique);
     } else {
+        console.log("ici");
         if( zone_affichage.val().length > 0 ) { // save
-            localStorage.setItem("key_"+zone_affichage.val(), zone_affichage.val());
+            localStorage.setItem("key_"+zone_affichage.val().toLowerCase(), zone_affichage.val());
         }
     }
 
