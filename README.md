@@ -16,3 +16,8 @@ Pour le projet nous avons fait :
 
   - AutoComplete remplit par les favoris + toutes les recherches effectuées
   - Appuyer sur "entrer" pour lancer une recherche
+
+
+Probleme rencontrer :
+  - AutoComplete
+  - Boite de dialogue jQuery UI
