@@ -1,6 +1,5 @@
 // initialiser la liste de favoris
 var tab_fav = new Array();
-console.log(tab_fav);
 init_fav();
 $("#btn-favoris").css('cursor', 'no-drop');
 
@@ -29,8 +28,6 @@ function color_Etoile() { // Si un favoris est detecter dans zone affichage mett
 
 
 function save_LS() { // save local storage quand on clique
-    // !! attention pas de doublon !!
-
     // Reccuperer la zone_affichage en Jquery
     let zone_affichage = $("#zone_affichage");
     let nom = zone_affichage.val();
@@ -54,9 +51,6 @@ function save_LS() { // save local storage quand on clique
 
 
 function init_fav() {
-    // parse le resultat du localStorage
-    // let obj = JSON.parse(localStorage.getItem("fav"));
-
     $("#liste-favoris").text("");
     $("#section-favoris").append('<p class="info-vide"></p>');
     // placer les element d'obj dans les li
@@ -67,8 +61,8 @@ function init_fav() {
             let clef = localStorage.key(i);
             let nom = localStorage.getItem(clef);
             if(clef.substr(0, 4) == "key_") {
-              $("#liste-favoris").append('<li> <span onclick="fav_clique(this)" title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
-              tab_fav.push(nom);
+                $("#liste-favoris").append('<li> <span onclick="fav_clique(this)" title="Cliquer pour relancer la recherche">'+nom+'</span> <img src="images/croix.svg" id="'+clef+'" onclick="remove_LS(this)" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">');
+                tab_fav.push(nom);
             }
         }
     }
