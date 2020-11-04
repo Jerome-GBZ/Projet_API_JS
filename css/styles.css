@@ -166,7 +166,6 @@ p#explication {
 	}
 }
 
-
 .list_deroulante {
 	width: 50px;
 	height: auto;
@@ -191,4 +190,11 @@ p#explication {
 
 .ui-dialog-title {
 	color: black;
+}
+
+.ui-button:first-child {
+    background-color: darkseagreen !important;
+}
+.ui-button:last-child {
+    background-color: darksalmon !important;
 }
