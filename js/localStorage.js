@@ -1,7 +1,8 @@
 // initialiser la liste de favoris
+var tab_fav = new Array();
+console.log(tab_fav);
 init_fav();
 $("#btn-favoris").css('cursor', 'no-drop');
-var tab_fav = [];
 
 function color_Etoile() { // Si un favoris est detecter dans zone affichage mettre etoile en pleine
     if( $("#zone_affichage").val().length > 0 ) {
