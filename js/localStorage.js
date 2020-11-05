@@ -52,11 +52,9 @@ function save_LS() { // save local storage quand on clique
 
 function init_fav() {
     $("#liste-favoris").text("");
-    $("#section-favoris").append('<p class="info-vide-favoris"> </p>');
+    $("#section-favoris").append('<p class="info-vide-favoris">( &empty; Aucune recherche enregistrée )</p>');
     // placer les element d'obj dans les li
-    if( localStorage.length == 0 ) {
-        $("#section-favoris").append('<p class="info-vide-favoris">( &empty; Aucune recherche enregistrée )</p>');
-    } else {
+    if( localStorage.length != 0 ) {
         $(".info-vide-favoris").remove();
         for (var i=0; i < localStorage.length; i++) {
             let clef = localStorage.key(i);
@@ -90,9 +88,6 @@ function remove_LS(img_click) {
                 // console.log("Annuler");
                 $(this).dialog("close");
             }
-        },
-        close: function(event, ui) {
-          $(this).remove();
         }
     });
 }
